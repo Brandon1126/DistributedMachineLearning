@@ -7,12 +7,13 @@ import os
 
 # os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
+
+import tensorflow as tf
 from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Sequential, Model
 from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D, ZeroPadding2D
-import tensorflow as tf
 
-Train_Dir = 'training.csv'
+Train_Dir = '../training.csv'
 train_data = pd.read_csv(Train_Dir)  
 
 #dealing with missing values, I've decided to fill null values in instead of dropping them
@@ -115,26 +116,28 @@ model.compile(optimizer='adam',
 
 
 
-model.fit(train_images,train_labels,epochs = 150,
-          batch_size = 256,
+model.fit(train_images,train_labels,epochs = 1,
+          batch_size = 64,
           validation_split = 0.1)
 
 
 save_path = "SavedModel/keyPointModel"
 model.save(save_path)
 
+#Most recently used instance type
+instance = "c3.xlarge"
 
 plt.plot(model.history.history['mae'])
 plt.title('Training: Mean Absolute Error')
 plt.ylabel('mae')
 plt.xlabel('# epochs')
-plt.savefig('mae.png', bbox_inches='tight')
+plt.savefig(instance + 'mae.png', bbox_inches='tight')
 plt.clf()
 plt.plot(model.history.history['accuracy'])
 plt.title('Training: Accuracy')
 plt.ylabel('acc')
 plt.xlabel('# epochs')
-plt.savefig('acc.png', bbox_inches='tight')
+plt.savefig(instance + 'acc.png', bbox_inches='tight')
 
 
 loss, mae, acc, *z = model.evaluate(train_images, train_labels, verbose=2)
