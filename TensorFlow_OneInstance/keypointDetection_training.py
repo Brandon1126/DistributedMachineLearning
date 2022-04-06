@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from IPython.display import clear_output
-from time import sleep
+from time import sleep, time
 import os
 
 # os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
@@ -113,31 +113,33 @@ model.compile(optimizer='adam',
               loss='mean_squared_error',
               metrics=['mae','accuracy'])
 
-
-
+now = time.time()
 
 model.fit(train_images,train_labels,epochs = 1,
           batch_size = 64,
           validation_split = 0.1)
 
+later = time.time()
+difference = later - now
+print("\nTotal training time: {}\n".format(difference))
 
 save_path = "SavedModel/keyPointModel"
 model.save(save_path)
 
 #Most recently used instance type
-instance = "c3.xlarge"
+results_dir = "Results/"
 
 plt.plot(model.history.history['mae'])
 plt.title('Training: Mean Absolute Error')
 plt.ylabel('mae')
 plt.xlabel('# epochs')
-plt.savefig(instance + 'mae.png', bbox_inches='tight')
+plt.savefig(results_dir + 'mae.png', bbox_inches='tight')
 plt.clf()
 plt.plot(model.history.history['accuracy'])
 plt.title('Training: Accuracy')
 plt.ylabel('acc')
 plt.xlabel('# epochs')
-plt.savefig(instance + 'acc.png', bbox_inches='tight')
+plt.savefig(results_dir + 'acc.png', bbox_inches='tight')
 
 
 loss, mae, acc, *z = model.evaluate(train_images, train_labels, verbose=2)
