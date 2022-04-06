@@ -12,7 +12,7 @@ from keras.models import Sequential, Model
 from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D, ZeroPadding2D
 import tensorflow as tf
 
-Train_Dir = 'training.csv'
+Train_Dir = '../training.csv'
 train_data = pd.read_csv(Train_Dir)  
 
 #dealing with missing values, I've decided to fill null values in instead of dropping them

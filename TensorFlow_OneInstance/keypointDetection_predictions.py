@@ -6,16 +6,15 @@ from time import sleep
 import os
 import random
 
-# os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
 from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Sequential, Model
 from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D, ZeroPadding2D
 import tensorflow as tf
 
-Test_Dir = 'test.csv'
-test_data = pd.read_csv(Test_Dir)
 
+Test_Dir = '../test.csv'
+test_data = pd.read_csv(Test_Dir)
 test_data.fillna(method = 'ffill',inplace = True)
 #print(train_data.isnull().any().value_counts())
 
