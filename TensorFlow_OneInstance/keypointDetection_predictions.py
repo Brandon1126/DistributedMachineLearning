@@ -12,11 +12,6 @@ from keras.models import Sequential, Model
 from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D, ZeroPadding2D
 import tensorflow as tf
 
-<<<<<<< HEAD:TensorFlow_OneInstance/keypointDetection_predictions.py
-=======
-Test_Dir = '../test.csv'
-test_data = pd.read_csv(Test_Dir)
->>>>>>> 935c7d726141c9f7277dac0255d4d5bb42eeb5f2:Tensflow/keypointDetection_predictions.py
 
 Test_Dir = '../test.csv'
 test_data = pd.read_csv(Test_Dir)
