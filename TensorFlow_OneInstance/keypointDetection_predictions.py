@@ -32,11 +32,11 @@ train_images = np.array(test_images,dtype = 'float').reshape(-1,96,96,1)
 
 
 #Now that the images have been set up, the image column can be dropped
-training = test_data.drop('Image',axis = 1)
+testing = test_data.drop('Image',axis = 1)
 
 test_labels = []
 for i in range(0,7049):
-    temp_label = training.iloc[i,:]
+    temp_label = testing.iloc[i,:]
     test_labels.append(temp_label)
 
 
