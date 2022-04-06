@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from IPython.display import clear_output
-from time import sleep, time
 import os
+import time
 
-# os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
+# os.add_dll_directory("/home/ubuntu/cuda/include")
 
 
 import tensorflow as tf
