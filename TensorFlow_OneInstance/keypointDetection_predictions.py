@@ -12,6 +12,11 @@ from keras.models import Sequential, Model
 from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D, ZeroPadding2D
 import tensorflow as tf
 
+<<<<<<< HEAD:TensorFlow_OneInstance/keypointDetection_predictions.py
+=======
+Test_Dir = '../test.csv'
+test_data = pd.read_csv(Test_Dir)
+>>>>>>> 935c7d726141c9f7277dac0255d4d5bb42eeb5f2:Tensflow/keypointDetection_predictions.py
 
 Test_Dir = '../test.csv'
 test_data = pd.read_csv(Test_Dir)
@@ -57,9 +62,11 @@ for i in range(20):
     for j in range(0, 30, 2):
       fig1.plot(predicted_image_features[i][j],predicted_image_features[i][j+1],'ro', markersize = 5)
       fig1.imshow(test_images[random_numbers[i]].reshape(96, 96), cmap="gray")
-    
+
+instance = "c3.xlarge/"
+
 plt.subplots_adjust(wspace=10, hspace=0)
 plt.tight_layout()
-plt.savefig('predictions.png', bbox_inches='tight')
+plt.savefig(instance + 'predictions.png', bbox_inches='tight')
 plt.show()
 
