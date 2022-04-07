@@ -50,12 +50,14 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=1, steps_per_epoch=50)
+multi_worker_model.fit(multi_worker_dataset, epochs=150, steps_per_epoch=40/num_workers)
 
 later = time.time()
 difference = later - now
 print("\nTraining time: {}\n".format(difference))
 
 
+input("Press Enter to End")
 
 
+print("All Done")
