@@ -1,6 +1,8 @@
 import os
 import json
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
 tf_config = {
     'cluster': {
         'worker': ['localhost:4000', 'localhost:4001']
