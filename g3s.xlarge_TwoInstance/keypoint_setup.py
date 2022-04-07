@@ -19,7 +19,7 @@ def keypoint_dataset(batch_size):
         temp_img = ['0' if x == '' else x for x in temp_img]
         train_images.append(temp_img)
 
-    train_images = np.array(train_images,dtype = 'float').reshape(-1,96,96,1)
+    train_images = np.array(train_images,dtype = 'float').reshape(-1,96,96,1) / 255.0
     training = train_data.drop('Image',axis = 1)
 
     train_labels = []
@@ -30,7 +30,7 @@ def keypoint_dataset(batch_size):
     train_labels = np.array(train_labels,dtype = 'float')
 
     train_dataset = tf.data.Dataset.from_tensor_slices(
-        (train_images, train_labels)).shuffle(60000).repeat().batch(batch_size)
+        (train_images, train_labels)).repeat().batch(batch_size)
     print("Made it to return keypoint_dataset")
     return train_dataset
 
