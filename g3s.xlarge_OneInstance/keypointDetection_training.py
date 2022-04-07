@@ -13,6 +13,8 @@ from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Sequential, Model
 from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D, ZeroPadding2D
 
+now = time.time()
+
 Train_Dir = '../training.csv'
 train_data = pd.read_csv(Train_Dir)  
 
@@ -113,15 +115,19 @@ model.compile(optimizer='adam',
               loss='mean_squared_error',
               metrics=['mae','accuracy'])
 
+later = time.time()
+difference = later - now
+print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-model.fit(train_images,train_labels,epochs = 1,
-          batch_size = 64,
+
+model.fit(train_images,train_labels,epochs = 200,
+          batch_size = 256,
           validation_split = 0.1)
 
 later = time.time()
 difference = later - now
-print("\nTotal training time: {}\n".format(difference))
+print("\nTraining time: {}\n".format(difference))
 
 save_path = "SavedModel/keyPointModel"
 model.save(save_path)

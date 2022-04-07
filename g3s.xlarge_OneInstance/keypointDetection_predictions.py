@@ -89,5 +89,5 @@ results_dir = "Results/"
 plt.subplots_adjust(wspace=10, hspace=0)
 plt.tight_layout()
 plt.savefig(results_dir + 'predictions.png', bbox_inches='tight')
-plt.show()
-
+#plt.show()
+print('Predictions done')
