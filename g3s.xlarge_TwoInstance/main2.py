@@ -1,7 +1,15 @@
 import os
 import json
 
-os.environ['TF_CONFIG'] = '{"cluster": {"worker": ["3.23.99.135:12345", "3.145.198.71:23456"]}, "task": {"type": "worker", "index": 1} }'
+tf_config = {
+    'cluster': {
+        'worker': ['3.23.99.135:12345', '3.145.198.71:23456']
+    },
+    'task': {'type': 'worker', 'index': 1}
+}
+
+
+os.environ['TF_CONFIG'] = json.dumps(tf_config)
 
 import numpy as np
 import random
