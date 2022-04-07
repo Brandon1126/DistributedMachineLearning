@@ -1,7 +1,7 @@
 import os
 import json
 
-os.environ['TF_CONFIG'] = '{"cluster": {"worker": ["3.136.84.118:12345", "3.143.223.239:23456"]}, "task": {"type": "worker", "index": 0} }'
+os.environ['TF_CONFIG'] = '{"cluster": {"worker": ["3.23.99.135:12345", "3.145.198.71:23456"]}, "task": {"type": "worker", "index": 0} }'
 
 import numpy as np
 import random
