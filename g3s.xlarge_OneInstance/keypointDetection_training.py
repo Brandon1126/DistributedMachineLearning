@@ -121,7 +121,7 @@ print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
 
-model.fit(train_images,train_labels,epochs = 120,
+model.fit(train_images,train_labels,epochs = 150,
           batch_size = 128,
           validation_split = 0.1)
 
