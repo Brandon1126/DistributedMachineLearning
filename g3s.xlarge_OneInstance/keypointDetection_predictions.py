@@ -69,20 +69,19 @@ for number in random_numbers:
 plt.figure(figsize=(10, 10))
 for i in range(10):
     fig1 = plt.subplot(4, 5, i + 1)
-    plt.title('Predicted Locations', loc='center')
     plt.xticks([])
     plt.yticks([])
-    for j in range(0, 30, 2):
-      fig1.plot(predicted_image_features[i][j],predicted_image_features[i][j+1],'ro', markersize = 5)
-      fig1.imshow(test_images[random_numbers[i]].reshape(96, 96), cmap="gray")
-    
     fig2 = plt.subplot(4, 5, i + 11)
     plt.xticks([])
     plt.yticks([])
-    plt.title('Actual Locations', loc='center')
+
     for j in range(0, 30, 2):
-      fig1.plot(test_labels[i][j],test_labels[i][j+1],'bo', markersize = 5)
+      fig1.plot(predicted_image_features[i][j],predicted_image_features[i][j+1],'ro', markersize = 5)
       fig1.imshow(test_images[random_numbers[i]].reshape(96, 96), cmap="gray")
+      fig2.plot(test_labels[i][j],test_labels[i][j+1],'bo', markersize = 5)
+      fig2.imshow(test_images[random_numbers[i]].reshape(96, 96), cmap="gray")
+
+
 
 results_dir = "Results/"
 
