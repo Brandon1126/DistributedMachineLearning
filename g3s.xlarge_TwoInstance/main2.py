@@ -3,7 +3,7 @@ import json
 
 tf_config = {
     'cluster': {
-        'worker': ['3.23.99.135:4000', '3.145.198.71:4000']
+        'worker': ['172.31.18.137:4000', '172.31.28.184:4001']
     },
     'task': {'type': 'worker', 'index': 1}
 }
