@@ -8,6 +8,7 @@ import matplotlib as plt
 now = time.time()
 
 per_worker_batch_size = 128
+os.environ['TF_CONFIG'] = '{"cluster": {"worker": ["3.136.84.118:12345", "localhost:23456"]}, "task": {"type": "worker", "index": 1} }'
 tf_config = json.loads(os.environ['TF_CONFIG'])
 num_workers = len(tf_config['cluster']['worker'])
 
