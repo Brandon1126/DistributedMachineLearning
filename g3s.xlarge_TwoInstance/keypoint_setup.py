@@ -9,6 +9,7 @@ from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormaliza
 
 # This function preprocesses the data based on given batch_size
 def keypoint_dataset(batch_size):
+    print("Made it to keypoint_dataset")
     Train_Dir = '../training.csv'
     train_data = pd.read_csv(Train_Dir) 
     train_data.fillna(method = 'ffill',inplace = True)
@@ -30,6 +31,7 @@ def keypoint_dataset(batch_size):
 
     train_dataset = tf.data.Dataset.from_tensor_slices(
         (train_images, train_labels)).shuffle(60000).repeat().batch(batch_size)
+    print("Made it to return keypoint_dataset")
     return train_dataset
 
 def build_and_compile_cnn_model():
@@ -86,6 +88,8 @@ def build_and_compile_cnn_model():
     model.compile(optimizer='adam', 
                 loss='mean_squared_error',
                 metrics=['mae','accuracy'])
+
+    print("made it to compiled model")
 
     return model
 

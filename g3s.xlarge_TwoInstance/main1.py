@@ -36,7 +36,7 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=150, validation_split = 0.1, steps_per_epoch=50)
+multi_worker_model.fit(multi_worker_dataset, epochs=1, validation_split = 0.1, steps_per_epoch=50)
 
 later = time.time()
 difference = later - now
