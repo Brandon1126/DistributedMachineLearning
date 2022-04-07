@@ -25,10 +25,7 @@ now = time.time()
 
 per_worker_batch_size = 128
 
-#tf_config = json.loads(os.environ['TF_CONFIG'])
-#num_workers = len(tf_config['cluster']['worker'])
-
-num_workers = 2
+num_workers = len(tf_config['cluster']['worker'])
 
 print(os.environ['TF_CONFIG'])
 
@@ -50,7 +47,7 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=150, steps_per_epoch=40/num_workers)
+multi_worker_model.fit(multi_worker_dataset, epochs=150, batch_size = global_batch_size)
 
 later = time.time()
 difference = later - now
