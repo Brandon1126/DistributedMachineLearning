@@ -1,15 +1,15 @@
 import os
 import json
 
-# tf_config = {
-#     'cluster': {
-#         'worker': ['3.23.99.135:12345', '3.145.198.71:23456']
-#     },
-#     'task': {'type': 'worker', 'index': 1}
-# }
+tf_config = {
+    'cluster': {
+        'worker': ['3.23.99.135:4000', '3.145.198.71:4000']
+    },
+    'task': {'type': 'worker', 'index': 1}
+}
 
 
-# os.environ['TF_CONFIG'] = json.dumps(tf_config)
+os.environ['TF_CONFIG'] = json.dumps(tf_config)
 
 print(os.environ['TF_CONFIG'])
 
