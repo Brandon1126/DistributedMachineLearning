@@ -19,6 +19,9 @@ per_worker_batch_size = 128
 #num_workers = len(tf_config['cluster']['worker'])
 
 num_workers = 2
+
+print(os.environ['TF_CONFIG'])
+
 strategy = tf.distribute.MultiWorkerMirroredStrategy()
 
 global_batch_size = per_worker_batch_size * num_workers
