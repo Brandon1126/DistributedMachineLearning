@@ -1,5 +1,8 @@
 import os
 import json
+
+os.environ['TF_CONFIG'] = '{"cluster": {"worker": ["3.136.84.118:12345", "3.143.223.239:23456"]}, "task": {"type": "worker", "index": 1} }'
+
 import time
 import tensorflow as tf
 import keypoint_setup
@@ -8,10 +11,11 @@ import matplotlib as plt
 now = time.time()
 
 per_worker_batch_size = 128
-os.environ['TF_CONFIG'] = '{"cluster": {"worker": ["3.136.84.118:12345", "localhost:23456"]}, "task": {"type": "worker", "index": 1} }'
-tf_config = json.loads(os.environ['TF_CONFIG'])
-num_workers = len(tf_config['cluster']['worker'])
 
+#tf_config = json.loads(os.environ['TF_CONFIG'])
+#num_workers = len(tf_config['cluster']['worker'])
+
+num_workers = 2
 strategy = tf.distribute.MultiWorkerMirroredStrategy()
 
 global_batch_size = per_worker_batch_size * num_workers
