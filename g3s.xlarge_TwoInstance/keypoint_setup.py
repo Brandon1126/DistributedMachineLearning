@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 from keras.models import Sequential, Model
-from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Conv2D, MaxPool2D
+from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Conv2D, MaxPool2D, Dropout
 
 # This function preprocesses the data based on given batch_size
 # Batch_size can change based on the number of instance worker nodes
@@ -69,6 +69,7 @@ def build_and_compile_cnn_model():
 
     model.add(Flatten())
     model.add(Dense(512,activation='relu'))
+    model.add(Dropout(0.2))
     model.add(Dense(30))
     
     model.summary()
