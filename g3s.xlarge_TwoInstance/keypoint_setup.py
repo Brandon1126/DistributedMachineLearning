@@ -42,34 +42,35 @@ def build_and_compile_cnn_model():
     model = Sequential()
     model.add(Convolution2D(32, (3,3), activation='relu', input_shape=(96,96,1), padding='same'))
     model.add(Convolution2D(32, (3,3), activation='relu', padding='same'))
-    model.add(BatchNormalization())
+    #model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(64, (3,3), activation='relu', padding='same'))
     model.add(Convolution2D(64, (3,3), activation='relu', padding='same'))
-    model.add(BatchNormalization())
+    #model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(96, (3,3), activation='relu', padding='same'))
     model.add(Convolution2D(96, (3,3), activation='relu', padding='same'))
-    model.add(BatchNormalization())
+    #model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(128, (3,3), activation='relu', padding='same'))
     model.add(Convolution2D(128, (3,3), activation='relu', padding='same'))
-    model.add(BatchNormalization())
+    #model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(256, (3,3), activation='relu', padding='same'))
     model.add(Convolution2D(256, (3,3), activation='relu', padding='same'))
-    model.add(BatchNormalization())
+    #model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(512, (3,3), activation='relu', padding='same'))
     model.add(Convolution2D(512, (3,3), activation='relu', padding='same'))
-    model.add(BatchNormalization())
+    #model.add(BatchNormalization())
 
     model.add(Flatten())
+    model.add(Dense(512,activation='relu'))
     model.add(Dense(512,activation='relu'))
     #Removed dropout for distributed training
     #model.add(Dropout(0.05))
