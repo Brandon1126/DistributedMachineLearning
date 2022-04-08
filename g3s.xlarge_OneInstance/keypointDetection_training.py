@@ -82,7 +82,7 @@ model.add(BatchNormalization())
 
 model.add(Flatten())
 model.add(Dense(512,activation='relu'))
-model.add(Dropout(0.2))
+model.add(Dropout(0.05))
 model.add(Dense(30))
 
 model.summary()
