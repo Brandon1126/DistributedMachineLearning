@@ -7,9 +7,8 @@ import os
 import random
 
 
-from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Sequential, Model
-from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D, ZeroPadding2D
+from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D
 import tensorflow as tf
 
 
@@ -51,7 +50,6 @@ save_path = "SavedModel/keyPointModel"
 model = tf.keras.models.load_model(save_path)
 
 
-
 # These will be the random indexs of images to print
 # This way I can see how the predictions across several randomly selected images performed
 random_numbers = []
@@ -76,7 +74,6 @@ for i in range(10):
       fig1.plot(predicted_image_features[i][j],predicted_image_features[i][j+1],'ro', markersize = 3)
       fig1.plot(test_labels[i][j],test_labels[i][j+1],'bo', markersize = 3)
       fig1.imshow(test_images[random_numbers[i]].reshape(96, 96), cmap="gray")
-
 
 
 results_dir = "Results/"

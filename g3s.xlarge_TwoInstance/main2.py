@@ -8,7 +8,6 @@ tf_config = {
     'task': {'type': 'worker', 'index': 1}
 }
 
-
 os.environ['TF_CONFIG'] = json.dumps(tf_config)
 
 print(os.environ['TF_CONFIG'])
@@ -23,7 +22,7 @@ import matplotlib as plt
 
 now = time.time()
 
-per_worker_batch_size = 128
+per_worker_batch_size = 64
 
 num_workers = len(tf_config['cluster']['worker'])
 
@@ -47,14 +46,15 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=150, batch_size = global_batch_size, validation_data=0.1)
+multi_worker_model.fit(multi_worker_dataset, epochs=100, batch_size = global_batch_size, validation_data=0.1)
 
 later = time.time()
 difference = later - now
 print("\nTraining time: {}\n".format(difference))
 
-save_path = "SavedModel/keyPointModel"
-multi_worker_model.save(save_path)
+# No need to save model
+# save_path = "SavedModel/keyPointModel"
+# multi_worker_model.save(save_path)
 
 
 input("Press Enter to End")

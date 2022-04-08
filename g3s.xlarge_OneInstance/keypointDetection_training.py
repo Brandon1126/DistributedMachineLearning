@@ -96,8 +96,8 @@ print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
 
-model.fit(train_images,train_labels,epochs = 150,
-          batch_size = 128,
+model.fit(train_images,train_labels,epochs = 100,
+          batch_size = 64,
           validation_split = 0.1)
 
 later = time.time()
@@ -111,13 +111,13 @@ model.save(save_path)
 results_dir = "Results/"
 
 plt.plot(model.history.history['mae'])
-plt.title('Training: Mean Absolute Error')
+plt.title('Mean Absolute Error')
 plt.ylabel('mae')
 plt.xlabel('# epochs')
 plt.savefig(results_dir + 'mae.png', bbox_inches='tight')
 plt.clf()
 plt.plot(model.history.history['accuracy'])
-plt.title('Training: Accuracy')
+plt.title('Training Accuracy')
 plt.ylabel('acc')
 plt.xlabel('# epochs')
 plt.savefig(results_dir + 'acc.png', bbox_inches='tight')
