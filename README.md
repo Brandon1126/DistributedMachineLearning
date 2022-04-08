@@ -1,6 +1,6 @@
 # DistributedMachineLearning_Project
 
-The instance types used for this project is posted below. We used 5 different instances with varying numbers of vCPU and GPU. Distributed machine leraning was abandoned because the scale of our model was not large enough to justify it. We did not see a speedup in performance as the communication overhead was too large and our models had to be adjusted too much to converge properly. 
+The instance types used for this project is posted below. We used 6 different instances with varying numbers of vCPU and GPU. Distributed machine learning was abandoned because the scale of our model was not large enough to justify it. We did not see a speedup in performance as the communication overhead was too large and our models had to be adjusted too much to converge properly. If we used more expensive instances with 100GB/s network, we would have seen a speedup in training time for distributed ML (using many VMs) but it turned out to not be worth. What was done instead is a survey of single VMs, most of which include a GPU.
 
 Instead we used 5 different types of paid instances offered by AWS to test our various types of GPU for machine learning. The same model was used in each instance. We were able to load these instances with helpful AMIs that included all the necessary libraries, including tensorflow, cuda API for nvidia GPUs. Anaconda was also pre-installed in these AMIs, and several environments were provided to choose from. We used "conda activate tensorflow2_p38".
 
