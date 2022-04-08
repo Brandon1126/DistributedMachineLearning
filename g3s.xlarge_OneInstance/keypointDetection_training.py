@@ -97,8 +97,7 @@ now = time.time()
 
 
 model.fit(train_images,train_labels,epochs = 100,
-          batch_size = 64,
-          validation_split = 0.1)
+          batch_size = 64)
 
 later = time.time()
 difference = later - now

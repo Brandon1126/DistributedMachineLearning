@@ -30,7 +30,7 @@ def keypoint_dataset(batch_size):
     train_labels = np.array(train_labels,dtype = 'float')
 
     train_dataset = tf.data.Dataset.from_tensor_slices(
-        (train_images, train_labels)).shuffle(7049).batch(batch_size)
+        (train_images, train_labels)).batch(batch_size)
     print("Made it to return keypoint_dataset")
     return train_dataset
 
