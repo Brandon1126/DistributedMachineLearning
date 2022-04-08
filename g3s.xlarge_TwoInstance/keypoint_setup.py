@@ -19,7 +19,7 @@ def keypoint_dataset(batch_size):
         temp_img = ['0' if x == '' else x for x in temp_img]
         train_images.append(temp_img)
 
-    train_images = np.array(train_images,dtype = 'float').reshape(-1,96,96,1)
+    train_images = np.array(train_images,dtype = 'float').reshape(-1,96,96,1) / 255.0
     training = train_data.drop('Image',axis = 1)
 
     train_labels = []
