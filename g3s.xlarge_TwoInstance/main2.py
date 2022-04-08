@@ -22,7 +22,7 @@ import matplotlib as plt
 
 now = time.time()
 
-per_worker_batch_size = 256
+per_worker_batch_size = 128
 
 num_workers = len(tf_config['cluster']['worker'])
 
@@ -46,7 +46,7 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=100, steps_per_epoch=10)
+multi_worker_model.fit(multi_worker_dataset, epochs=100, steps_per_epoch=61)
 
 later = time.time()
 difference = later - now
