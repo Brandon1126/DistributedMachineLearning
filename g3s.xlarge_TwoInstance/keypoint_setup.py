@@ -29,6 +29,8 @@ def keypoint_dataset(batch_size):
 
     train_labels = np.array(train_labels,dtype = 'float')
 
+    #Key line to partition the data based on batch_size, 
+    #The data will be split between the VMs
     train_dataset = tf.data.Dataset.from_tensor_slices(
         (train_images, train_labels)).batch(batch_size)
     print("Made it to return keypoint_dataset")
