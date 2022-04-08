@@ -8,7 +8,7 @@ Instead we used 5 different types of paid instances offered by AWS to test our v
 
 # c5.4xlarge:  16 vCPU - No GPU
 
-Initialization time:  18.27s (Didnt have to load GPU libraries)
+      Initialization time:  18.27s (Didnt have to load GPU libraries)
 
       Training time:  
 
@@ -20,7 +20,7 @@ Notes: ML without a GPU is pretty slow!
 
 # g3s.xlarge:  4 vCPU - 1 GPU (Nvidia Tesla M60)
 
-Initialization time:  23.07s
+      Initialization time:  23.07s
 
       Training time:  883.80s
 
@@ -32,7 +32,7 @@ Notes: Drastic speedup, even with only 4 vCPUs, from the use of 1 basic GPU that
 
 # g3.4xlarge:  16 vCPU - 1 GPU (Nvidia Tesla M60)
 
-Initialization time:  21.91s
+      Initialization time:  21.91s
 
       Training time:  877.64s   
 
@@ -44,7 +44,7 @@ Notes: Going from 4 vCPUs to 16 vCPUs did not provide a signifigant speedup. Whe
 
 # g4dn.2xlarge:  8 vCPU - 1 GPU (Nvidia Tesla T4)
 
-Initialization time:  19.45s
+      Initialization time:  19.45s
 
       Training time:  700.49s
 
@@ -56,7 +56,7 @@ Notes: The T4 GPU is a datacenter GPU that has ML in mind, so it's no surprise t
 
 # p2.xlarge:  4 vCPU - 1 GPU (Nvidia Tesla K80) 
 
-Initialization time:
+      Initialization time:
 
       Training time:
 
@@ -68,7 +68,7 @@ Notes: Older datacenter GPU, originally manufacturer in 2014, but still powerful
 
 # p3.2xlarge:  8 vCPU - 1 GPU (Nvidia Tesla V100) Elite Datacenter GPU
 
-Initialization time:
+      Initialization time:
 
       Training time:
 
