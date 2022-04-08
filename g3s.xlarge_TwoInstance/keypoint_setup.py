@@ -78,7 +78,7 @@ def build_and_compile_cnn_model():
     model.summary()
 
     model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.01), 
-                loss='mean_squared_error',
+                loss='mean_absolute_error',
                 metrics=['mae','accuracy'])
 
     print("made it to compiled model")
