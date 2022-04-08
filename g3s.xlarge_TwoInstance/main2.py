@@ -22,7 +22,7 @@ import matplotlib as plt
 
 now = time.time()
 
-per_worker_batch_size = 256
+per_worker_batch_size = 128
 
 num_workers = len(tf_config['cluster']['worker'])
 
