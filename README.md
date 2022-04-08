@@ -35,7 +35,7 @@ Initialization time:
 
 2) Discussion of kaggle data used for keypoint detection. Information found here.
 https://www.kaggle.com/competitions/facial-keypoints-detection/data
-Can talk about how the data is preprocessed, total of ~7000 images. Some images were missing keypoint labels in the csv, hadd to fill in the values. This affected training accuracy but not too much.
+Can talk about how the data is preprocessed, total of ~7000 images (code snippets). Some images were missing keypoint labels in the csv, hadd to fill in the values. This affected training accuracy but not too much. Can post some example images from this dataset, what locations we're trying to predict.
 
 3) Discussion of CNN model used, complete description found in code & results , use code snippets. Give model summary (which includes all layers). Can discuss what the layers do.
 

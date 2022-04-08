@@ -9,18 +9,21 @@ import time
 
 
 import tensorflow as tf
-from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Sequential, Model
-from keras.layers import Activation, Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D, ZeroPadding2D
+from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, MaxPool2D
 
 now = time.time()
 
 Train_Dir = '../training.csv'
 train_data = pd.read_csv(Train_Dir)  
 
-#dealing with missing values, I've decided to fill null values in instead of dropping them
+# Some labels are missing (28 in total)
+# I've decided to fill these null values in instead of dropping them.
+# This does affect accuracy, but not as much as dropping the images entirely (I think)
+# Overall it has a negligible effect, but it has to be adjusted to prevent errors.
 train_data.fillna(method = 'ffill',inplace = True)
 
+# Extracting images one by one and placing them into "train_images"
 train_images = []
 for i in range(0,7049):
     temp_img = train_data['Image'][i].split(' ')
@@ -28,19 +31,22 @@ for i in range(0,7049):
     train_images.append(temp_img)
 
 
-#converting training and testing images to np.array, and reshaping to be 96 by 96 by 1
+# Converting training and testing images to np.array, and reshaping to be 96 by 96 by 1
 train_images = np.array(train_images,dtype = 'float').reshape(-1,96,96,1)
 
 
-#Now that the images have been set up, the image column can be dropped
+# Now that the images have been set up, the image column can be dropped
+# Will now extract the labels
+# These labels are where the keypoints are located
 training = train_data.drop('Image',axis = 1)
 
-
+# Each label conststs of 15 (x, y) coordinates (30 values)
+# These labels tell the model where the actual keypoints are
+# Without these, the model couldn't "learn"
 train_labels = []
 for i in range(0,7049):
     temp_label = training.iloc[i,:]
     train_labels.append(temp_label)
-
 
 train_labels = np.array(train_labels,dtype = 'float')
 

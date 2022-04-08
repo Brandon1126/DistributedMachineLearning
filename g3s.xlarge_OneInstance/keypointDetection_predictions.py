@@ -11,14 +11,15 @@ from keras.models import Sequential, Model
 from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Conv2D, MaxPool2D
 import tensorflow as tf
 
-
+# I've used the training data in place of the actual testing data, the reason is that the
+# format of the testing data does not provide all the correct labels. This is unfortunate,
+# but it doesn't matter too much in the grand scheme of things, because the main focus
+# is on the cloud computing side of things
 Test_Dir = '../training.csv'
 test_data = pd.read_csv(Test_Dir)  
 
-#dealing with missing values, I've decided to fill null values in instead of dropping them
-#This, unfortunately, will affect accuracy, but I think it's better than dropping them
+# Preprocessing the data in the same way as in "Training script"
 test_data.fillna(method = 'ffill',inplace = True)
-
 test_images = []
 for i in range(0,7049):
     temp_img = test_data['Image'][i].split(' ')
@@ -26,13 +27,12 @@ for i in range(0,7049):
     test_images.append(temp_img)
 
 
-#converting training and testing images to np.array, and reshaping to be 96 by 96 by 1
+# Converting training and testing images to np.array, and reshaping to be 96 by 96 by 1
 train_images = np.array(test_images,dtype = 'float').reshape(-1,96,96,1)
 
 
-#Now that the images have been set up, the image column can be dropped
+# Now that the images have been set up, the image column can be dropped
 testing = test_data.drop('Image',axis = 1)
-
 test_labels = []
 for i in range(0,7049):
     temp_label = testing.iloc[i,:]
@@ -41,11 +41,11 @@ for i in range(0,7049):
 
 test_labels = np.array(test_labels,dtype = 'float')
 
-#converting training and testing images to np.array, and reshaping to be 96 by 96 by 1
+# Converting testing images to np.array, and reshaping to be 96 by 96 by 1
 test_images = np.array(test_images,dtype = 'float').reshape(-1,96,96,1)
 
 
-#Recovering the trained model
+# Recovering the trained model so we can get some predictions from it
 save_path = "SavedModel/keyPointModel"
 model = tf.keras.models.load_model(save_path)
 
@@ -54,10 +54,10 @@ model = tf.keras.models.load_model(save_path)
 # These will be the random indexs of images to print
 # This way I can see how the predictions across several randomly selected images performed
 random_numbers = []
-for i in range(20):
+for i in range(10):
     random_numbers.append(random.randint(0, len(test_images) - 1))
 
-# Each of these hold 5 sets of locations
+
 predicted_image_features = []
 predictions = model.predict(test_images)
 
