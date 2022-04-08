@@ -10,7 +10,7 @@ Instead we used 5 different types of paid instances offered by AWS to test our v
 
       Initialization time:  18.27s (Didnt have to load GPU libraries)
 
-      Training time:  
+      Training time:  6663.82s
 
       cost per hour:  0.68 USD per Hour
 
