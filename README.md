@@ -6,30 +6,75 @@ Instead we used 5 different types of paid instances offered by AWS to test our v
 
 # Key results (More results and images in each corresponding instance folder)
 
-         g3s.xlarge:  4 vCPU - 1 GPU (Nvidia Tesla M60) Meant for graphics
+# c5.4xlarge:  16 vCPU - No GPU
+
+Initialization time:  18.27s (Didnt have to load GPU libraries)
+
+      Training time:  
+
+      cost per hour:  0.68 USD per Hour
+
+Notes: ML without a GPU is pretty slow!
+
+
+
+# g3s.xlarge:  4 vCPU - 1 GPU (Nvidia Tesla M60)
+
+Initialization time:  23.07s
+
+      Training time:  883.80s
+
+      cost per hour:  0.75 USD per Hour
+
+Notes: Drastic speedup, even with only 4 vCPUs, from the use of 1 basic GPU that was not built for ML, but basic application graphics.
+
+
+
+# g3.4xlarge:  16 vCPU - 1 GPU (Nvidia Tesla M60)
+
+Initialization time:  21.91s
+
+      Training time:  877.64s   
+
+      cost per hour:  1.14 USD per Hour
+
+Notes: Going from 4 vCPUs to 16 vCPUs did not provide a signifigant speedup. When Tensorflow detects a GPU (and has the appropriate APIs installed) most of the training will take place on the GPU, which is why the additional vCPUs do not help.
+
+
+
+# g4dn.2xlarge:  8 vCPU - 1 GPU (Nvidia Tesla T4)
+
+Initialization time:  19.45s
+
+      Training time:  700.49s
+
+      cost per hour:  0.752 USD per Hour
+
+Notes: The T4 GPU is a datacenter GPU that has ML in mind, so it's no surprise that we see a speedup in ML training performance, despite having half the vCPUs. Note that this instance is cheaper than the previous.
+
+
+
+# p2.xlarge:  4 vCPU - 1 GPU (Nvidia Tesla K80) 
+
 Initialization time:
+
       Training time:
+
       cost per hour:
 
-          g4.xlarge: 16 vCPU - 1 GPU (Nvidia Tesla M60) Meant for graphics
+Notes: Older datacenter GPU, originally manufacturer in 2014, but still powerful.
+
+
+
+# p3.2xlarge:  8 vCPU - 1 GPU (Nvidia Tesla V100) Elite Datacenter GPU
+
 Initialization time:
+
       Training time:
+
       cost per hour:
 
-       g4dn.4xlarge: 16 vCPU - 1 GPU (Nvidia Tesla T4) Meant for ML, but cheaper
-Initialization time:
-      Training time:
-      cost per hour:
-
-          p2.xlarge:  4 vCPU - 1 GPU (Nvidia Tesla K80) 
-Initialization time:
-      Training time:
-      cost per hour:
-
-         p3.2xlarge:  8 vCPU - 1 GPU (Nvidia Tesla V100) Elite GPU
-Initialization time:
-      Training time:
-      cost per hour:
+Notes: Top of the line modern datacenter GPU with ML in mind.
 
 # What to talk about in the paper - some ideas:
 
