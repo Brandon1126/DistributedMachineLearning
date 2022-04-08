@@ -50,7 +50,22 @@ print(train_labels.shape)
 
 #Model Creation
 model = Sequential()
+"""
 
+Detailed Description:
+I made this model up. It's a somewhat randomly constructed CNN model meant to handle
+images inputs. The basic idea is that we wanted a model that had sufficient parameters to stress test
+the GPUs, but also give decently accuracy when trained. This model ends up overfitting the data a bit.
+But it does well overall.
+
+Basic idea of CNN models:
+The early convolution layers are meant to detect basic features, like edges, lines, etc.
+The input layer is 96 by 96 to fit our data pixel by pixel. 
+The padding='same' means that zeros will be filled in at the edges as our filter
+'convols' around the edges. Output is then the same as the input size. Model breaks without it.
+Batchnormalization helps to smooth out the training.
+
+"""
 model.add(Convolution2D(32, (3,3), activation='relu', input_shape=(96,96,1), padding='same'))
 model.add(Convolution2D(32, (3,3), activation='relu', padding='same'))
 model.add(BatchNormalization())
@@ -87,18 +102,51 @@ model.add(Dense(30))
 
 model.summary()
 
+"""
+Compile Description:
+The optimizer used is 'adam', which is a known algorithm for minimization of our loss function.
+This optimizer controls how the model 'learns' and handles the mathematical details of how
+the parameters of our model will change in order to make better predictions. There are many
+different types of optimizers. I picked adam randomly.
+Our loss function is 'mean_squared_error', there are many different loss functions that we could use
+This loss function is what we're trying to minimize. A larger loss means that the models predicted
+keypoint locations were further away from the actual locations. Our optimizer is tasked with
+strategically minimizing this loss function.
+The metrics we want to track is acurracy and mean absolute error.
+Acurracy measures how well the model is doing, 100% would mean the model is perfect.
+(Not likely to happen). mean absolute error is related to mean squared error (which is our loss function)
+It has a lower value, makes it look nicer in our graph, that is the only reason I used it.
+Lower is better.
+
+"""
 model.compile(optimizer='adam', 
               loss='mean_squared_error',
               metrics=['mae','accuracy'])
 
+
+# Measuring how much time passed for preprocessing the data and building + compiling
+# our CNN model.
 later = time.time()
 difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
+"""
 
+This line of code starts the training processing (model.fit)
+Epochs = 100 means that we want to go through our data 100 times.
+batch_size = 64 is how many images we want to send into our GPU at a time.
+Higher batch_size means our model will train faster, but could have problems with
+converging; meaning that the accuracy could bounce around more while the model is trying 
+to learn.
+validation_split=0.1 means that we want to use 10% of our data to validate how well the model is doing.
+However, this means we have less overall training data, which is a trade off that we will make!
+
+"""
 model.fit(train_images,train_labels,epochs = 100,
-          batch_size = 128)
+          batch_size=64, validation_split=0.1)
+
+
 
 later = time.time()
 difference = later - now
