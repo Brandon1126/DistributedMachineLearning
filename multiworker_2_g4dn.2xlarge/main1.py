@@ -25,8 +25,7 @@ num_workers = len(tf_config['cluster']['worker'])
 
 print(os.environ['TF_CONFIG'])
 
-strategy = tf.distribute.MultiWorkerMirroredStrategy(communication=tf.distribute.experimental
-                                                     .CollectiveCommunication.RING)
+strategy = tf.distribute.MultiWorkerMirroredStrategy()
 
 print("Made it past strategy")
 
@@ -47,7 +46,7 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=100, steps_per_epoch=25)
+multi_worker_model.fit(multi_worker_dataset, epochs=100)
 
 later = time.time()
 difference = later - now
