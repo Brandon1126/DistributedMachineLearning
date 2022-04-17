@@ -96,7 +96,7 @@ def build_and_compile_cnn_model():
 
     model.summary()
 
-    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.02),
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.005),
                   loss='mean_squared_error',
                   metrics=['mae', 'accuracy'])
 
