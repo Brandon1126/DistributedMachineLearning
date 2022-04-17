@@ -62,7 +62,7 @@ Notes: The T4 GPU is a datacenter GPU that has ML in mind, so it's no surprise t
 
 # 2x_g4dn.2xlarge:  16 vCPU - 2 GPU (2x Nvidia Tesla T4) - Up to 25 Gigabit Network
 
-      Initialization time:  58.681665897369385s
+      Initialization time:  28.11s
 
             Training time:  
 
