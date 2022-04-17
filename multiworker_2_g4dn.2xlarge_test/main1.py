@@ -69,5 +69,3 @@ plt.ylabel('acc')
 plt.xlabel('# epochs')
 plt.savefig(results_dir + 'acc.png', bbox_inches='tight')
 
-loss, mae, acc, *z = multi_worker_model.evaluate(multi_worker_train, multi_worker_label, verbose=2)
-print("Model accuracy with training data: {:5.2f}%".format(100 * acc))
