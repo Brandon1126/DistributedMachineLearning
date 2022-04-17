@@ -44,7 +44,7 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_train, multi_worker_label, epochs=100, batch_size=64, validation_split=0.1)
+multi_worker_model.fit(multi_worker_train, multi_worker_label, epochs=100, batch_size=128, validation_split=0.1)
 
 later = time.time()
 difference = later - now
@@ -63,7 +63,11 @@ plt.xlabel('# epochs')
 plt.savefig(results_dir + 'mae.png', bbox_inches='tight')
 plt.clf()
 plt.plot(multi_worker_model.history.history['accuracy'])
-plt.title('Training Accuracy')
+plt.plot(multi_worker_model.history.history['val_accuracy'])
+plt.title('Train Accuracy vs Validation Accuracy')
 plt.ylabel('acc')
 plt.xlabel('# epochs')
 plt.savefig(results_dir + 'acc.png', bbox_inches='tight')
+
+loss, mae, acc, *z = multi_worker_model.evaluate(multi_worker_train, multi_worker_label, verbose=2)
+print("Model accuracy with training data: {:5.2f}%".format(100 * acc))
