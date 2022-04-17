@@ -31,8 +31,8 @@ print("Made it past strategy")
 
 global_batch_size = per_worker_batch_size * num_workers
 # dataset = keypoint_setup.keypoint_dataset(global_batch_size)
-multi_worker_dataset = tf.distribute.Strategy.experimental_distribute_dataset(keypoint_setup.keypoint_dataset
-                                                                              ,global_batch_size)
+multi_worker_dataset = tf.distribute.Strategy.distribute_datasets_from_function(keypoint_setup.keypoint_dataset,
+                                                                                global_batch_size)
 
 print("Made it past data parallelization")
 
