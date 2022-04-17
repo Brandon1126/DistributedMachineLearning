@@ -3,7 +3,7 @@ import os
 
 tf_config = {
     'cluster': {
-        'worker': ['172.31.19.242:4000', '172.31.18.137:4001']
+        'worker': ['172.31.29.52:4000', '172.31.30.246:4001']
     },
     'task': {'type': 'worker', 'index': 1}
 }
@@ -51,7 +51,6 @@ print("\nTraining time: {}\n".format(difference))
 # No need to save model
 # save_path = "SavedModel/keyPointModel"
 # multi_worker_model.save(save_path)
-
 
 input("Press Enter to End")
 
