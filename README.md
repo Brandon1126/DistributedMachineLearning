@@ -60,7 +60,7 @@ Notes: The T4 GPU is a datacenter GPU that has ML in mind, so it's no surprise t
 
 
 
-# 2x_g4dn.2xlarge:  16 vCPU - 2 GPU (2x Nvidia Tesla T4) in 10GB/s network
+# 2x_g4dn.2xlarge:  16 vCPU - 2 GPU (2x Nvidia Tesla T4) - Up to 25 Gigabit Network
 
       Initialization time:  
 
@@ -68,7 +68,7 @@ Notes: The T4 GPU is a datacenter GPU that has ML in mind, so it's no surprise t
 
             Cost per hour:  
 
-Notes: The T4 GPU is a datacenter GPU that has ML in mind, so it's no surprise that we see a speedup in ML training performance, despite having half the vCPUs. Note that this instance is cheaper than the previous.
+Notes: Distributed Machine Learning. 
 
 
 
