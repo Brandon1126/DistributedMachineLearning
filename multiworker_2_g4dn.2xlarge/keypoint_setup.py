@@ -7,13 +7,13 @@ from keras.models import Sequential
 
 # This function preprocesses the data based on given batch_size
 # Batch_size can change based on the number of instance worker nodes
-def keypoint_dataset(batch_size):
+def keypoint_dataset1():
     print("Made it to keypoint_dataset")
     train_dir = '../training.csv'
     train_data = pd.read_csv(train_dir)
     train_data.fillna(method='ffill', inplace=True)
     train_images = []
-    for i in range(0, 7049):
+    for i in range(0, 3524):
         temp_img = train_data['Image'][i].split(' ')
         temp_img = ['0' if x == '' else x for x in temp_img]
         train_images.append(temp_img)
@@ -22,18 +22,37 @@ def keypoint_dataset(batch_size):
     training = train_data.drop('Image', axis=1)
 
     train_labels = []
-    for i in range(0, 7049):
+    for i in range(0, 3524):
         temp_label = training.iloc[i, :]
         train_labels.append(temp_label)
 
     train_labels = np.array(train_labels, dtype='float')
 
-    # Key line to partition the data based on batch_size,
-    # The data will be split between the VMs
-    train_dataset = tf.data.Dataset.from_tensor_slices(
-        (train_images, train_labels)).repeat().batch(batch_size)
-    print("Made it to return keypoint_dataset")
-    return train_dataset
+    return train_images, train_labels
+
+
+def keypoint_dataset2():
+    print("Made it to keypoint_dataset")
+    train_dir = '../training.csv'
+    train_data = pd.read_csv(train_dir)
+    train_data.fillna(method='ffill', inplace=True)
+    train_images = []
+    for i in range(3524, 7049):
+        temp_img = train_data['Image'][i].split(' ')
+        temp_img = ['0' if x == '' else x for x in temp_img]
+        train_images.append(temp_img)
+
+    train_images = np.array(train_images, dtype='float').reshape(-1, 96, 96, 1) / 255.0
+    training = train_data.drop('Image', axis=1)
+
+    train_labels = []
+    for i in range(3524, 7049):
+        temp_label = training.iloc[i, :]
+        train_labels.append(temp_label)
+
+    train_labels = np.array(train_labels, dtype='float')
+
+    return train_images, train_labels
 
 
 # This function builds a custom-made Convolutional neural network
@@ -77,7 +96,7 @@ def build_and_compile_cnn_model():
 
     model.summary()
 
-    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.002),
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
                   loss='mean_squared_error',
                   metrics=['mae', 'accuracy'])
 

@@ -28,8 +28,8 @@ strategy = tf.distribute.MultiWorkerMirroredStrategy()
 
 print("Made it past strategy")
 
-global_batch_size = per_worker_batch_size * num_workers
-multi_worker_dataset = keypoint_setup.keypoint_dataset(global_batch_size)
+# global_batch_size = per_worker_batch_size * num_workers
+multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset2()
 
 print("Made it past data")
 
@@ -42,7 +42,7 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=100)
+multi_worker_model.fit(multi_worker_train, multi_worker_label, epochs=100, batch_size=64, validation_split=0.1)
 
 later = time.time()
 difference = later - now

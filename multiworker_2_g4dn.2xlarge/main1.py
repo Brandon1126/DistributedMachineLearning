@@ -29,8 +29,8 @@ strategy = tf.distribute.MultiWorkerMirroredStrategy()
 
 print("Made it past strategy")
 
-global_batch_size = per_worker_batch_size * num_workers
-multi_worker_dataset = keypoint_setup.keypoint_dataset(global_batch_size)
+# global_batch_size = per_worker_batch_size * num_workers
+multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset1()
 
 print("Made it past data parallelization")
 
@@ -44,7 +44,7 @@ difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=100)
+multi_worker_model.fit(multi_worker_train, multi_worker_label, epochs=100, batch_size=64, validation_split=0.1)
 
 later = time.time()
 difference = later - now
@@ -63,7 +63,9 @@ plt.xlabel('# epochs')
 plt.savefig(results_dir + 'mae.png', bbox_inches='tight')
 plt.clf()
 plt.plot(multi_worker_model.history.history['accuracy'])
-plt.title('Training Accuracy')
+plt.plot(multi_worker_model.history.history['val_accuracy'])
+plt.title('Train Accuracy vs Validation Accuracy')
 plt.ylabel('acc')
 plt.xlabel('# epochs')
 plt.savefig(results_dir + 'acc.png', bbox_inches='tight')
+
