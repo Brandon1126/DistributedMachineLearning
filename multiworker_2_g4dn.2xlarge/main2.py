@@ -24,8 +24,7 @@ num_workers = len(tf_config['cluster']['worker'])
 
 print(os.environ['TF_CONFIG'])
 
-strategy = tf.distribute.MultiWorkerMirroredStrategy(communication=tf.distribute.experimental
-                                                     .CollectiveCommunication.RING)
+strategy = tf.distribute.MultiWorkerMirroredStrategy()
 
 print("Made it past strategy")
 
