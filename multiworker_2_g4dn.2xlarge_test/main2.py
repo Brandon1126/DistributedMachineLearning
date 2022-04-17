@@ -1,11 +1,9 @@
 import json
 import os
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 tf_config = {
     'cluster': {
-        'worker': ['localhost:4000', 'localhost:4001']
+        'worker': ['172.31.29.52:4000', '172.31.30.246:4001']
     },
     'task': {'type': 'worker', 'index': 1}
 }
@@ -22,10 +20,7 @@ now = time.time()
 
 per_worker_batch_size = 128
 
-#tf_config = json.loads(os.environ['TF_CONFIG'])
-#num_workers = len(tf_config['cluster']['worker'])
-
-num_workers = 2
+num_workers = len(tf_config['cluster']['worker'])
 
 print(os.environ['TF_CONFIG'])
 
@@ -33,23 +28,30 @@ strategy = tf.distribute.MultiWorkerMirroredStrategy()
 
 print("Made it past strategy")
 
-global_batch_size = per_worker_batch_size * num_workers
-multi_worker_dataset = keypoint_setup.keypoint_dataset(global_batch_size)
+# global_batch_size = per_worker_batch_size * num_workers
+multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset2()
 
 print("Made it past data")
 
 with strategy.scope():
-  # Model building/compiling need to be within `strategy.scope()`.
-  multi_worker_model = keypoint_setup.build_and_compile_cnn_model()
+    # Model building/compiling need to be within `strategy.scope()`.
+    multi_worker_model = keypoint_setup.build_and_compile_cnn_model()
 
 later = time.time()
 difference = later - now
 print("\nInitialization time: {}\n".format(difference))
 now = time.time()
 
-multi_worker_model.fit(multi_worker_dataset, epochs=1, steps_per_epoch=50)
+multi_worker_model.fit(multi_worker_train, multi_worker_label, epochs=100, batch_size=64, validation_split=0.1)
 
 later = time.time()
 difference = later - now
 print("\nTraining time: {}\n".format(difference))
 
+# No need to save model
+# save_path = "SavedModel/keyPointModel"
+# multi_worker_model.save(save_path)
+
+input("Press Enter to End")
+
+print("All Done")
