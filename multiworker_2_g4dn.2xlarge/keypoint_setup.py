@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from keras.layers import Convolution2D, Flatten, Dense, MaxPool2D
+from keras.layers import Convolution2D, Flatten, Dense, MaxPool2D, BatchNormalization, Dropout
 from keras.models import Sequential
 
 
@@ -9,8 +9,8 @@ from keras.models import Sequential
 # Batch_size can change based on the number of instance worker nodes
 def keypoint_dataset(batch_size):
     print("Made it to keypoint_dataset")
-    Train_Dir = '../training.csv'
-    train_data = pd.read_csv(Train_Dir)
+    train_dir = '../training.csv'
+    train_data = pd.read_csv(train_dir)
     train_data.fillna(method='ffill', inplace=True)
     train_images = []
     for i in range(0, 7049):
@@ -42,38 +42,37 @@ def build_and_compile_cnn_model():
     model = Sequential()
     model.add(Convolution2D(32, (3, 3), activation='relu', input_shape=(96, 96, 1), padding='same'))
     model.add(Convolution2D(32, (3, 3), activation='relu', padding='same'))
-    # model.add(BatchNormalization())
+    model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(64, (3, 3), activation='relu', padding='same'))
     model.add(Convolution2D(64, (3, 3), activation='relu', padding='same'))
-    # model.add(BatchNormalization())
+    model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(96, (3, 3), activation='relu', padding='same'))
     model.add(Convolution2D(96, (3, 3), activation='relu', padding='same'))
-    # model.add(BatchNormalization())
+    model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(128, (3, 3), activation='relu', padding='same'))
     model.add(Convolution2D(128, (3, 3), activation='relu', padding='same'))
-    # model.add(BatchNormalization())
+    model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(256, (3, 3), activation='relu', padding='same'))
     model.add(Convolution2D(256, (3, 3), activation='relu', padding='same'))
-    # model.add(BatchNormalization())
+    model.add(BatchNormalization())
     model.add(MaxPool2D(pool_size=(2, 2)))
 
     model.add(Convolution2D(512, (3, 3), activation='relu', padding='same'))
     model.add(Convolution2D(512, (3, 3), activation='relu', padding='same'))
-    # model.add(BatchNormalization())
+    model.add(BatchNormalization())
 
     model.add(Flatten())
     model.add(Dense(512, activation='relu'))
     model.add(Dense(512, activation='relu'))
-    # Removed dropout for distributed training
-    # model.add(Dropout(0.05))
+    model.add(Dropout(0.05))
     model.add(Dense(30))
 
     model.summary()
