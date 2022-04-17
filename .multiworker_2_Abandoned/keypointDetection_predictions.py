@@ -6,9 +6,6 @@ from time import sleep
 import os
 import random
 
-
-from keras.models import Sequential, Model
-from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, Conv2D, MaxPool2D
 import tensorflow as tf
 
 

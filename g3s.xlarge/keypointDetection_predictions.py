@@ -8,7 +8,6 @@ import random
 
 
 from keras.models import Sequential, Model
-from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Conv2D, MaxPool2D
 import tensorflow as tf
 
 # I've used the training data in place of the actual testing data, the reason is that the

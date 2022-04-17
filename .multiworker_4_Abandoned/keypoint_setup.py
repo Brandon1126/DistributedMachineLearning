@@ -1,10 +1,10 @@
-import os
 import tensorflow as tf
 import numpy as np
 import pandas as pd
+import tensorflow as tf
+from keras.layers import Convolution2D, BatchNormalization, Flatten, Dense, MaxPool2D
+from keras.models import Sequential
 
-from keras.models import Sequential, Model
-from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Conv2D, MaxPool2D, Dropout
 
 # This function preprocesses the data based on given batch_size
 # Batch_size can change based on the number of instance worker nodes

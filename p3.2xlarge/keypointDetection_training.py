@@ -1,16 +1,11 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-from IPython.display import clear_output
-import os
 import time
+from keras.layers import Convolution2D, BatchNormalization, Flatten, Dense, Dropout, MaxPool2D
+from keras.models import Sequential
 
 # os.add_dll_directory("/home/ubuntu/cuda/include")
-
-
-import tensorflow as tf
-from keras.models import Sequential, Model
-from keras.layers import Convolution2D, MaxPooling2D, BatchNormalization, Flatten, Dense, Dropout, MaxPool2D
 
 now = time.time()
 

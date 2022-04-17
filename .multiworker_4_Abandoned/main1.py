@@ -1,5 +1,5 @@
-import os
 import json
+import os
 
 tf_config = {
     'cluster': {
@@ -13,9 +13,6 @@ os.environ['TF_CONFIG'] = json.dumps(tf_config)
 
 print(os.environ['TF_CONFIG'])
 
-import numpy as np
-import random
-import pandas as pd
 import time
 import tensorflow as tf
 import keypoint_setup
