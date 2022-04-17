@@ -15,7 +15,7 @@ print(os.environ['TF_CONFIG'])
 import time
 import tensorflow as tf
 import keypoint_setup
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 now = time.time()
 
