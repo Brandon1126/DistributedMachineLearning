@@ -5,9 +5,12 @@ Distributed machine learning was experimented with, but we did not get the resul
 
 We used 4 different types of paid instances offered by AWS to test our various types of GPU for machine learning. 
 The same model was used in each instance. 
-We were able to load these instances with helpful AMIs that included all the necessary libraries, including tensorflow, cuda API for nvidia GPUs. 
-Anaconda was also pre-installed in these AMIs, and several environments were provided to choose from. We used "conda activate tensorflow2_p38".
-Unfortunately, we were not allowed to use the top-tier P-type instances (these offer the best GPUs for ML, like Nvidia's Tesla V100). 
+We were able to load these instances with helpful AMIs that included all the necessary libraries, 
+including tensorflow, cuda API for nvidia GPUs. 
+Anaconda was also pre-installed in these AMIs, and several environments were provided to choose from. 
+We used "conda activate tensorflow2_p38".
+Unfortunately, we were not allowed to use the top-tier P-type instances (these offer the best GPUs for ML, 
+like Nvidia's Tesla V100). 
 Details provided below.
 
 ## Key results Below (More results and images in each corresponding instance folder)
@@ -32,7 +35,8 @@ Notes: ML without a GPU is pretty slow!
 
             Cost per hour:  0.75 USD per Hour
 
-Notes: Drastic speedup, even with only 4 vCPUs, from the use of 1 basic GPU that was not built for ML, but basic application graphics.
+Notes: Drastic speedup, even with only 4 vCPUs, from the use of 1 basic GPU that was not built for ML, 
+but basic application graphics.
 
 
 
@@ -44,7 +48,22 @@ Notes: Drastic speedup, even with only 4 vCPUs, from the use of 1 basic GPU that
 
             Cost per hour:  1.14 USD per Hour
 
-Notes: Going from 4 vCPUs to 16 vCPUs did not provide a significant speedup. When Tensorflow detects a GPU (and has the appropriate APIs installed) most of the training will take place on the GPU, which is why the additional vCPUs do not help.
+Notes: Going from 4 vCPUs to 16 vCPUs did not provide a significant speedup. 
+When Tensorflow detects a GPU (and has the appropriate APIs installed) most of the training will take place on the GPU, which is why the additional vCPUs do not help.
+
+
+
+# g4dn.xlarge:  4 vCPU - 1 GPU (Nvidia Tesla T4) (Recently added)
+
+      Initialization time:  
+
+            Training time:  
+
+            Cost per hour:  0.710 USD per Hour
+
+Notes: The T4 GPU is a datacenter GPU that has ML in mind,
+so it's no surprise that we see a speedup in ML training performance, 
+despite having half the vCPUs. Note that this instance is cheaper than the previous.
 
 
 
@@ -56,11 +75,12 @@ Notes: Going from 4 vCPUs to 16 vCPUs did not provide a significant speedup. Whe
 
             Cost per hour:  0.752 USD per Hour
 
-Notes: The T4 GPU is a datacenter GPU that has ML in mind, so it's no surprise that we see a speedup in ML training performance, despite having half the vCPUs. Note that this instance is cheaper than the previous.
+Notes: Virtually the same as the previous instance. I threw this in here just to show that additional 
+vCPUs don't matter all that much for ML, as shown previously
 
 
 
-# 2x_g4dn.2xlarge:  16 vCPU - 2 GPU (2x Nvidia Tesla T4) - Up to 25 Gigabit Network
+# 2x_g4dn.2xlarge:  16 vCPU - 2 GPUs (2x Nvidia Tesla T4) - Up to 25 Gigabit Network
 
       Initialization time:  17.63s
 
@@ -68,7 +88,31 @@ Notes: The T4 GPU is a datacenter GPU that has ML in mind, so it's no surprise t
 
             Cost per hour:  2 * 0.752 USD per Hour
 
-Notes: Distributed Machine Learning. 
+Notes: Distributed Machine Learning with 2 instances - 2xlarge
+
+
+
+# 2x_g4dn.xlarge:  8 vCPU - 2 GPUs (2x Nvidia Tesla T4) - Up to 25 Gigabit Network (Recently added)
+
+      Initialization time:  
+
+            Training time:  
+
+            Cost per hour:  2 * 0.710 USD per Hour
+
+Notes: Distributed Machine Learning with 2 instances - xlarge (less vCPUs)
+
+
+
+# 4x_g4dn.xlarge:  16 vCPU - 4 GPUs (4x Nvidia Tesla T4) - Up to 25 Gigabit Network (Recently added)
+
+      Initialization time:  
+
+            Training time:  
+
+            Cost per hour:  4 * 0.710 USD per Hour
+
+Notes: Distributed Machine Learning with 4 instances - 
 
 
 
@@ -120,3 +164,7 @@ Can talk about how the data is preprocessed, total of ~7000 images (code snippet
 7) timing results between the instances
 
 8) cost of instances
+
+9) Struggles with AWS. They did not grant access to their P-type instances. They aim to keep these instance types at 40-60%
+load, and explained that they will usually only grant access for users that have gone through a few billing cycles. This is to ensure
+that new users do not end up with unexpected large bills by accident, as these instance types can be expensive.
