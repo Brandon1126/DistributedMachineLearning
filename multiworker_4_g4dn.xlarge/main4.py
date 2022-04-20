@@ -29,7 +29,7 @@ strategy = tf.distribute.MultiWorkerMirroredStrategy()
 print("Made it past strategy")
 
 # global_batch_size = per_worker_batch_size * num_workers
-multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset(5286, 7049)
+multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset(5286, 7048)
 
 print("Made it past data")
 
