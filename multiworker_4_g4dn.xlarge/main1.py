@@ -32,6 +32,7 @@ print("Made it past strategy")
 # global_batch_size = per_worker_batch_size * num_workers
 multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset(0, 1762)
 
+print(multi_worker_train.shape, multi_worker_label.shape)
 print("Made it past data parallelization")
 
 with strategy.scope():
