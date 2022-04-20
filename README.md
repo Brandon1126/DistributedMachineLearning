@@ -67,31 +67,6 @@ despite having half the vCPUs. Note that this instance is cheaper than the previ
 
 
 
-# g4dn.2xlarge:  8 vCPU - 1 GPU (Nvidia Tesla T4)
-
-      Initialization time:  19.45s
-
-            Training time:  700.49s
-
-            Cost per hour:  0.752 USD per Hour
-
-Notes: Virtually the same as the previous instance. I threw this in here just to show that additional 
-vCPUs don't matter all that much for ML, as shown previously
-
-
-
-# 2x_g4dn.2xlarge:  16 vCPU - 2 GPUs (2x Nvidia Tesla T4) - Up to 25 Gigabit Network
-
-      Initialization time:  17.63s
-
-            Training time:  651.27s
-
-            Cost per hour:  2 * 0.752 USD per Hour
-
-Notes: Distributed Machine Learning with 2 instances - 2xlarge
-
-
-
 # 2x_g4dn.xlarge:  8 vCPU - 2 GPUs (2x Nvidia Tesla T4) - Up to 25 Gigabit Network (Recently added)
 
       Initialization time:  
@@ -106,9 +81,9 @@ Notes: Distributed Machine Learning with 2 instances - xlarge (less vCPUs)
 
 # 4x_g4dn.xlarge:  16 vCPU - 4 GPUs (4x Nvidia Tesla T4) - Up to 25 Gigabit Network (Recently added)
 
-      Initialization time:  
+      Initialization time:  18.62s
 
-            Training time:  
+            Training time:  438.22s
 
             Cost per hour:  4 * 0.710 USD per Hour
 

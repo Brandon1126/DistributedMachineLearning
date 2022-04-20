@@ -3,7 +3,7 @@ import os
 
 tf_config = {
     'cluster': {
-        'worker': ['172.31.29.52:4000', '172.31.30.246:4001']
+        'worker': ['172.31.33.173:4000', '172.31.39.200:4001']
     },
     'task': {'type': 'worker', 'index': 0}
 }
@@ -30,8 +30,9 @@ strategy = tf.distribute.MultiWorkerMirroredStrategy()
 print("Made it past strategy")
 
 # global_batch_size = per_worker_batch_size * num_workers
-multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset1()
+multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset(0, 3524)
 
+print(multi_worker_train.shape, multi_worker_label.shape)
 print("Made it past data parallelization")
 
 with strategy.scope():
@@ -68,4 +69,3 @@ plt.title('Train Accuracy vs Validation Accuracy')
 plt.ylabel('acc')
 plt.xlabel('# epochs')
 plt.savefig(results_dir + 'acc.png', bbox_inches='tight')
-
