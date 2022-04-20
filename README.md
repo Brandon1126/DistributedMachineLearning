@@ -55,9 +55,9 @@ When Tensorflow detects a GPU (and has the appropriate APIs installed) most of t
 
 # g4dn.xlarge:  4 vCPU - 1 GPU (Nvidia Tesla T4) (Recently added)
 
-      Initialization time:  
+      Initialization time:  18.12s
 
-            Training time:  
+            Training time:  595.34s
 
             Cost per hour:  0.710 USD per Hour
 
