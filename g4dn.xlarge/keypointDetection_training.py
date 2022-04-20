@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import time
+import tensorflow as tf
 from keras.layers import Convolution2D, BatchNormalization, Flatten, Dense, Dropout, MaxPool2D
 from keras.models import Sequential
 
@@ -118,7 +119,7 @@ It has a lower value, makes it look nicer in our graph, that is the only reason 
 Lower is better.
 
 """
-model.compile(optimizer='adam',
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
               loss='mean_squared_error',
               metrics=['mae', 'accuracy'])
 
