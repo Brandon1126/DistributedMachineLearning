@@ -34,7 +34,6 @@ multi_worker_train, multi_worker_label = keypoint_setup.keypoint_dataset(5286, 7
 print(multi_worker_train.shape, multi_worker_label.shape)
 print("Made it past data")
 
-
 with strategy.scope():
     # Model building/compiling need to be within `strategy.scope()`.
     multi_worker_model = keypoint_setup.build_and_compile_cnn_model()

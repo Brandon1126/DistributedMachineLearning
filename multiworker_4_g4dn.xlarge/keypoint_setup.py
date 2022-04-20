@@ -13,8 +13,8 @@ def keypoint_dataset(i, j):
     train_data = pd.read_csv(train_dir)
     train_data.fillna(method='ffill', inplace=True)
     train_images = []
-    for i in range(i, j):
-        temp_img = train_data['Image'][i].split(' ')
+    for num in range(i, j):
+        temp_img = train_data['Image'][num].split(' ')
         temp_img = ['0' if x == '' else x for x in temp_img]
         train_images.append(temp_img)
 
@@ -22,8 +22,8 @@ def keypoint_dataset(i, j):
     training = train_data.drop('Image', axis=1)
 
     train_labels = []
-    for i in range(i, j):
-        temp_label = training.iloc[i, :]
+    for num in range(i, j):
+        temp_label = training.iloc[num, :]
         train_labels.append(temp_label)
 
     train_labels = np.array(train_labels, dtype='float')
