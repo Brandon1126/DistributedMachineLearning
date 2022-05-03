@@ -3,15 +3,6 @@
 The instance types used for this project are posted below. We used 4 different instances with varying numbers of vCPU and GPU. 
 Distributed machine learning was experimented with, but we did not get the results we expected. We did not see a speedup in performance as the communication overhead was too large and our models had to be adjusted too much to converge properly. If we used more expensive instances with 100GB/s network, we would have seen a speedup in training time for distributed ML (using many VMs) but it turned out to not be worth. What was done instead is a survey of single VMs, most of which include a GPU.
 
-We used 4 different types of paid instances offered by AWS to test our various types of GPU for machine learning. 
-The same model was used in each instance. 
-We were able to load these instances with helpful AMIs that included all the necessary libraries, 
-including tensorflow, cuda API for nvidia GPUs. 
-Anaconda was also pre-installed in these AMIs, and several environments were provided to choose from. 
-We used "conda activate tensorflow2_p38".
-Unfortunately, we were not allowed to use the top-tier P-type instances (these offer the best GPUs for ML, 
-like Nvidia's Tesla V100). 
-Details provided below.
 
 ## Key results Below (More results and images in each corresponding instance folder)
 
@@ -120,26 +111,3 @@ Notes: Top of the line modern datacenter GPU with ML in mind. I wish we got to u
 See the note above, access to this resource was also denied.
 
 
-# What to talk about in the paper - some ideas:
-
-1) Discuss main objection - Using machine learning various AWS EC2 instances, using Tensorflow. Discuss each instance and the type of GPU it has. Can mention which GPUs are meant for ML and which arent.
-
-2) Discussion of kaggle data used for keypoint detection. Information found here.
-https://www.kaggle.com/competitions/facial-keypoints-detection/data
-Can talk about how the data is preprocessed, total of ~7000 images (code snippets). Some images were missing keypoint labels in the csv, hadd to fill in the values. This affected training accuracy but not too much. Can post some example images from this dataset, what locations we're trying to predict.
-
-3) Discussion of CNN model used, complete description found in code & results , use code snippets. Give model summary (which includes all layers). Can discuss what the layers do.
-
-4) optimizer used, loss function used, and measured metrics
-
-5) discussing of training accuracy
-
-6) pictures of faces printed out with actual keypoints vs predicted keypoints
-
-7) timing results between the instances
-
-8) cost of instances
-
-9) Struggles with AWS. They did not grant access to their P-type instances. They aim to keep these instance types at 40-60%
-load, and explained that they will usually only grant access for users that have gone through a few billing cycles. This is to ensure
-that new users do not end up with unexpected large bills by accident, as these instance types can be expensive.
